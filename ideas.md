@@ -14,8 +14,9 @@ _E register:_ Extra
 _F register:_ Flags  
 _G register:_ Global  
 
-The `A` register is the accumulator register. This register stores the results of all arithmetic and logic operations. It is the first operand of all binary operations and the only operand of unary operations. The following are the arithmetic and logic intructions. For example `add x` instruction adds x to the accumulator and leaves the result in the accumulator. 
+The `A` register is the accumulator register. This register stores the results of all arithmetic and logic operations. It is the first operand of all binary operations and the only operand of unary operations. The following are the arithmetic and logic intructions. For example `add x` instruction adds x to the accumulator and leaves the result in the accumulator.
 
+#### Arithmetic and Logic Instructions
 1.  **add:** Adds its operand to the accumulator.
 2.  **sub:** Subtracts its operand from the accumulator.
 3.  **rsub:** Subtracts the accumulator from the operand.
@@ -28,4 +29,10 @@ The `A` register is the accumulator register. This register stores the results o
 10. **or:** Bitwise `or` of accumulator with operand
 11. **xor:** Bitwise `xor` of accumulator with operand
 12. **not:** Bitwise `not` of accumulator
-13.  
+13. **shl:** Shifts accumulator left by operand amount
+14. **shr:** Shifts accumulator right by operand amount
+15. **rol:** Rotate accumulator left by operand amount
+16. **ror:** Rotate accumulator right by operand amount
+
+####
+
