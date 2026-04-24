@@ -107,7 +107,8 @@ The following are instructions for loading and storing values with the registers
 1.  **acc:** Loads the operand into the accumulator
 2.  **base:** Loads the operand into the base register
 3.  **counter:** Loads the operand into the counter register
-4.  **store:** Writes the operand into memory 
+4.  **store:** Writes the operand into memory. The address is in the B register
+5.  
 
 ### Miscalleneous Instructions
 1.  **nop:** Do nothing
