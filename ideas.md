@@ -10,7 +10,7 @@ _A register:_ Accumulator
 _B register:_ Base  
 _C register:_ Counter  
 _D register:_ Data  
-_E register:_ Extra 
+_E register:_ Extra  
 _F register:_ Flags  
 _G register:_ Global  
 
@@ -111,3 +111,14 @@ The following are instructions for loading and storing values with the registers
 
 ### Miscalleneous Instructions
 1.  **nop:** Do nothing
+2.  **psva:** Preserve A. Copies the A register into the D register
+3.  **psvb:** Preserve B. Copies the B register into the E register
+4.  **resta:** Restore A. Copies the D register into the A register
+5.  **restb:** Restore B. Copies the E register into the B register
+
+### Memory Access
+Memory can be accessed by specifying an offset from the value in the base (or B) register. The offset value is a signed integer. For example:
+```
+add @1234  ; This adds the value at (B + 1234) to the value in the accumulator
+mul @C     ; Multiply the accumulator by value at memory address B + C (the counter register)
+```
