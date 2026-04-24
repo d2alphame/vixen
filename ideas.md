@@ -93,6 +93,7 @@ The following instructions are that make use of the flags register. I've also ad
 18. **jaz:** Jump if accumulator is zero
 19. **janz:** Jump if accumulator is not zero
 20. **loop:** Decrement the counter and jump
+21. **jse:** Jump on stack error. Jumps if stack-error flag is set
 
 ### The Counter Register
 The counter register is meant for counting. Besides the `jcz`, `jcnz`, and `loop` instructions as specified above, the increment and decrement instructions affect the counter register.
@@ -107,3 +108,6 @@ The following are instructions for loading and storing values with the registers
 2.  **base:** Loads the operand into the base register
 3.  **counter:** Loads the operand into the counter register
 4.  **store:** Writes the operand into memory 
+
+### Miscalleneous Instructions
+1.  **nop:** Do nothing
