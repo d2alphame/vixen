@@ -99,3 +99,11 @@ The counter register is meant for counting. Besides the `jcz`, `jcnz`, and `loop
 
 1.  **inc:** Increment the value in the counter regiter
 2.  **dec:** Decrement the value in the counter register
+
+### Instruction For Loading Registers
+The following are instructions for loading and storing values with the registers.
+
+1.  **acc:** Loads the operand into the accumulator
+2.  **base:** Loads the operand into the base register
+3.  **counter:** Loads the operand into the counter register
+4.  **store:** Writes the operand into memory 
