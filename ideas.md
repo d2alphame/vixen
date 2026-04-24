@@ -41,7 +41,7 @@ The `A` register is the accumulator register. This register stores the results o
 1.  **sign:** Sets the sign flag to the most significant bit of the accumulator
 
 ### The Stack
-The stack is a special scratch space with 8 slots in it. It should be noted that the stack does not live in main memory. The stack instructions operate on the stack. Stack operations that return value place the return value in the accumulator register.
+The stack is a special scratch space with 8 slots in it - kept so small intentionally. It should be noted that the stack does not live in main memory. The stack instructions operate on the stack. Stack operations that return value place the return value in the accumulator register.
 
 1.  **push:** Pushes the operand on to the stack
 2.  **pop:** Removes the item on top of the stack and returns it in the accumulator
@@ -67,6 +67,7 @@ The flags register has the following flags available.
 
 - **sign:** Set according to the most significant bit of the result of an arithmetic and logic operation
 - **zero:** Set if result of an operation is zero, clear if otherwise
+- **carry:** Set when there's a carry or borrow from an operation
 - **stack-error:** Set if a stack operation results in an error
 - **x:** The `x` flag is available for programmers' use
 - **y:** The `y` flag is available for programmers' use
@@ -91,3 +92,10 @@ The following instructions are that make use of the flags register. I've also ad
 17. **jcnz:** Jump if counter register is not zero
 18. **jaz:** Jump if accumulator is zero
 19. **janz:** Jump if accumulator is not zero
+20. **loop:** Decrement the counter and jump
+
+### The Counter Register
+The counter register is meant for counting. Besides the `jcz`, `jcnz`, and `loop` instructions as specified above, the increment and decrement instructions affect the counter register.
+
+1.  **inc:** Increment the value in the counter regiter
+2.  **dec:** Decrement the value in the counter register
