@@ -12,7 +12,6 @@ _C register:_ Counter
 _D register:_ Data  
 _E register:_ Extra  
 _F register:_ Flags  
-_G register:_ Global  
 
 Note that I am considering using E as the 'error' register rather than the 'extra' register.  
 The `A` register is the accumulator register. This register stores the results of all arithmetic and logic operations. It is the first operand of all binary operations and the only operand of unary operations. The following are the arithmetic and logic intructions. For example `add x` instruction adds x to the accumulator and leaves the result in the accumulator. All arithmetic and logic instructions set the flags depending on the result of the operation.
