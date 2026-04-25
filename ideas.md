@@ -40,7 +40,7 @@ The `A` register is the accumulator register. This register stores the results o
 #### Miscallenious Instructions Targetting the Accumulator
 1.  **sign:** Sets the sign flag to the most significant bit of the accumulator
 
-### The Stack
+### The Compute Stack
 The stack is a special scratch space with 8 slots in it - kept so small intentionally. It should be noted that the stack does not live in main memory. The stack instructions operate on the stack. Stack operations that return value place the return value in the accumulator register.
 
 1.  **push:** Pushes the operand on to the stack
@@ -61,6 +61,13 @@ The stack is a special scratch space with 8 slots in it - kept so small intentio
 16. **cap:** Return the total number of items that the stack can hold
 
 Attempting to add items to a full stack would lead to an overflow error, and attempting to remove from an empty stack would cause an underflow error. When any of the stack errors occurs, the `Stack Error` flag is set.
+
+### The Call Stack
+This is the stack that is used to make calls and it is different from the compute stack. Unlike the compute stack, this stack lives in main memory. It has only 16 slots in it and is only affected by the `call` and `ret` instructions.
+
+#### Instructions Affecting the Call Stack
+- **call:** Makes a call to another part of a running program
+- **ret:** Returns from a call
 
 ### The Flags Register
 The flags register has the following flags available.
@@ -120,8 +127,6 @@ The following are instructions for loading and storing values with the registers
 3.  **rest:** Restore A. Copies the D register into the A register
 4.  **mark:** Preserve B. For bookmarking a point in memory
 5.  **reset:** Restore B. Restores the base register to the last bookmark
-6.  **call:** Call
-7.  **ret:** Return
 
 ### Memory Access
 Memory can be accessed by specifying an offset from the value in the base (or B) register. The offset value is a signed integer. For example:
