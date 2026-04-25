@@ -125,8 +125,14 @@ The following are instructions for loading and storing values with the registers
 1.  **nop:** Do nothing
 2.  **prsv:** Preserve A. Copies the A register into the D register
 3.  **rest:** Restore A. Copies the D register into the A register
-4.  **mark:** Preserve B. For bookmarking a point in memory
-5.  **reset:** Restore B. Restores the base register to the last bookmark
+4.  **mark:** Preserve B. For bookmarking a point in memory. Sets the `frozen` flag if it's not set
+5.  **reset:** Restore B. Restores the base register to the last bookmark. Always clears the `frozen` flag
+
+The `mark` and `reset` instructions are used to preserve the content of the B register and then restore it. 
+
+`mark` checks the `frozen` flag and if it's already set, it sets the `e-mod-error` flag and ignores. If the `frozen` flag is clear, it copies the value in the B register into the E register and then sets the `frozen` flag.
+
+`reset` copies the E register into the B register and clears the `frozen` flag. It *always* clears the flag.
 
 ### Memory Access
 Memory can be accessed by specifying an offset from the value in the base (or B) register. The offset value is a signed integer. For example:
