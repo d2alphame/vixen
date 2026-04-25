@@ -97,6 +97,9 @@ The following instructions make use of the flags register. I've also added the j
 19. **janz:** Jump if accumulator is not zero
 20. **loop:** Decrement the counter and jump
 21. **jse:** Jump on stack error. Jumps if stack-error flag is set
+22. **jc:** Jump if carry flag is set
+23. **jnc:** Jump if carry flag is clear
+24. **jemoderr:** Jump if e-mod-error flag is set 
 
 ### The Counter Register
 The counter register is meant for counting. Besides the `jcz`, `jcnz`, and `loop` instructions as specified above, the increment and decrement instructions affect the counter register.
@@ -118,6 +121,8 @@ The following are instructions for loading and storing values with the registers
 3.  **rest:** Restore A. Copies the D register into the A register
 4.  **mark:** Preserve B. For bookmarking a point in memory
 5.  **reset:** Restore B. Restores the base register to the last bookmark
+6.  **call:** Call
+7.  **ret:** Return
 
 ### Memory Access
 Memory can be accessed by specifying an offset from the value in the base (or B) register. The offset value is a signed integer. For example:
