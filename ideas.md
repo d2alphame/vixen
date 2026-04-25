@@ -14,6 +14,7 @@ _E register:_ Extra
 _F register:_ Flags  
 _G register:_ Global  
 
+Note that I am considering using E as the 'error' register rather than the 'extra' register.  
 The `A` register is the accumulator register. This register stores the results of all arithmetic and logic operations. It is the first operand of all binary operations and the only operand of unary operations. The following are the arithmetic and logic intructions. For example `add x` instruction adds x to the accumulator and leaves the result in the accumulator. All arithmetic and logic instructions set the flags depending on the result of the operation.
 
 #### Arithmetic and Logic Instructions
@@ -65,14 +66,16 @@ Attempting to add items to a full stack would lead to an overflow error, and att
 ### The Flags Register
 The flags register has the following flags available.
 
-- **sign:** Set according to the most significant bit of the result of an arithmetic and logic operation
 - **zero:** Set if result of an operation is zero, clear if otherwise
 - **carry:** Set when there's a carry or borrow from an operation
+- **frozen:** Set when 'mark' is active, clear otherwise
+- **e-mod-error:** Set when there's an attempt to modify the E register while 'mark' is active
 - **stack-error:** Set if a stack operation results in an error
 - **x:** The `x` flag is available for programmers' use
 - **y:** The `y` flag is available for programmers' use
+- **sign:** Set according to the most significant bit of the result of an arithmetic and logic operation
 
-The following instructions are that make use of the flags register. I've also added the jump instructions here.
+The following instructions make use of the flags register. I've also added the jump instructions here.
 1.  **setx:** Sets the x flag
 2.  **clearx:** Clears the x flag
 3.  **togglex:** Toggles the x flag
