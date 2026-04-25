@@ -134,6 +134,8 @@ The `mark` and `reset` instructions are used to preserve the content of the B re
 
 `reset` copies the E register into the B register and clears the `frozen` flag. It *always* clears the flag.
 
+While the `frozen` flag is set, any instruction that modifies the E register will fail with `emoderr` error and set the `e-mod-err` flag.
+
 ### Memory Access
 Memory can be accessed by specifying an offset from the value in the base (or B) register. The offset value is a signed integer. For example:
 ```
