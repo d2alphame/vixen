@@ -2,7 +2,7 @@
 This file documents ideas I have for a simple virtual machine. It's a personal project of mine that I think would be fun.
 
 ## Architecture
-The vixen vm is a hybrid accumulator machine and stack machine.
+The vixen vm is a hybrid accumulator machine and stack machine. It has 2 accumulators - a main accumulator and an auxilliary accumulator. The `A` register is the main accumulator and the `D` register is the auxilliary. All registers are 64 bits wide. 
 
 ### Registers
 The registers are the A to G registers.  
