@@ -1,9 +1,9 @@
 The following are the registers available on the fabric
 
 These are read-only
-FABRIC_ID
-FABRIC_VENDOR
-FABRIC_VERSION
+FABRIC_ID (8 bytes): 
+FABRIC_VENDOR (8 bytes): Creator/maker of the Fabric (Writes to this register are ignored)
+FABRIC_VERSION (8 bytes): Version (Writes to this register are ignored)
 
 ECAM_BASE_ADDR (8 bytes): Base Address of ECAM
 ECAM_SIZE_MASK (8 bytes): Size mask for ECAM Region
@@ -31,7 +31,7 @@ bit 1 = I2C - Set to enable routing to I2C
 bit 2 = RAM - Set to enable routing to RAM
 
 
-Each route in the routing table has:
+Each route entry in the routing table has:
 Base Address // Base address of the region
 Size Mask // Size mask
 Read-Only // The region is readonly
