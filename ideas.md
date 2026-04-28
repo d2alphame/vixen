@@ -12,6 +12,8 @@ _C register:_ Counter
 _D register:_ Data  
 _E register:_ Extra  
 _F register:_ Flags  
+_S register:_ Source
+_T register:_ Target  
 
 Note that I am considering using E as the 'error' register rather than the 'extra' register.  
 The `A` register is the accumulator register. This register stores the results of all arithmetic and logic operations. It is the first operand of all binary operations and the only operand of unary operations. The following are the arithmetic and logic intructions. For example `add x` instruction adds x to the accumulator and leaves the result in the accumulator. All arithmetic and logic instructions set the flags depending on the result of the operation.
@@ -60,7 +62,7 @@ The stack is a special scratch space with 8 slots in it - kept so small intentio
 15. **count:** Returns the number of item on stack
 16. **cap:** Return the total number of items that the stack can hold
 
-Attempting to add items to a full stack would lead to an overflow error, and attempting to remove from an empty stack would cause an underflow error. When any of the stack errors occurs, the `Stack Error` flag is set.
+Attempting to add items to a full stack would lead to an overflow error, and attempting to remove from an empty stack would cause an underflow error. When any of these stack errors occur, the `Stack Error` flag is set.
 
 ### The Call Stack
 This is the stack that is used to make calls and it is different from the compute stack. Unlike the compute stack, this stack lives in main memory. It has only 16 slots in it and is only affected by the `call` and `ret` instructions.
@@ -119,7 +121,8 @@ The following are instructions for loading and storing values with the registers
 1.  **acc:** Loads the operand into the accumulator
 2.  **base:** Loads the operand into the base register
 3.  **counter:** Loads the operand into the counter register
-4.  **store:** Writes the operand into memory. The address is in the B register 
+4.  **source:** Loads its operand value into the source register
+5.  **target:** Loads its operand value into the target register
 
 ### Miscalleneous Instructions
 1.  **nop:** Do nothing
@@ -144,3 +147,13 @@ mul @C     ; Multiply the accumulator by value at memory address B + C (the coun
 ```
 When accessing memory with the offset mode, the value in the base register is not affected.
 
+1.  **load:** Reads from memory address base + source (the B and the S registers) into operand. Auto increments S
+2.  **store:** Writes operand to memory address base + target (the B and the T registers). Auto decrements T
+
+To read from or write to an absolute address, specify 0 as the offset. This reads from the address in the B register as
+an absolute value.
+```
+acc @0  ; Leads to reading from absolute memory address value in the B register.
+```
+It should be noted that in all these cases, the value in the B regitered is never affected. It is simply used as the
+base for memory address calculations. 
