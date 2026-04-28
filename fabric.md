@@ -29,3 +29,10 @@ COMMAND flags
 bit 0 = ECAM - Set to enable routing to ECAM
 bit 1 = I2C - Set to enable routing to I2C
 bit 2 = RAM - Set to enable routing to RAM
+
+
+Each route in the routing table has:
+Base Address // Base address of the region
+Size Mask // Size mask
+Read-Only // The region is readonly
+enabled  // Routing is enabled to this region
