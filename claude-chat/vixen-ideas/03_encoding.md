@@ -19,35 +19,26 @@ bit  15-12   bits 11-9    bits 8-2    bits 1-0
 
 ---
 
-## Operand Type Field (bits 15-12)
+## Operand Type Field (bits 15-13)
 
-Describes what follows the instruction word and the addressing mode.
+Describes what follows the instruction word.
 
 ```
-0000 — no operand, next word is next instruction
-0001 — 8-bit immediate follows  (1 extra 16-bit word, value in low 8 bits)
-0010 — 16-bit immediate follows (1 extra 16-bit word)
-0011 — 32-bit immediate follows (2 extra 16-bit words)
-0100 — 64-bit immediate follows (4 extra 16-bit words)
-0101 — @register   memory[B + register]  (register in bits 11-9)
-0110 — @8-bit immediate  memory[B + 8-bit offset]
-0111 — @16-bit immediate memory[B + 16-bit offset]
-1000 — @32-bit immediate memory[B + 32-bit offset]
-1001 — @64-bit immediate memory[B + 64-bit offset]
-1010 — (reserved)
-1011 — (reserved)
-1100 — (reserved)
-1101 — (reserved)
-1110 — (reserved)
-1111 — continuation — next 16-bit word extends the instruction further
+000 - No operand, next word is next instruction
+001 - 8-bit immediate follows
+010 - 16-bit immediate follows
+011 - 32-bit immediate follows
+100 - 64-bit immmediate follows
+101 - 
+110 -
+111 - Continuation next words this instruction code
 ```
 
 ---
 
-## Register Field (bits 11-9)
+## Register Field (bits 12-10)
 
-Encodes a register operand. Used when operand type is a register reference
-or a memory reference via register (`@register`).
+Encodes a register operand.
 
 ```
 000 — none (no register operand)
@@ -56,13 +47,36 @@ or a memory reference via register (`@register`).
 011 — C (counter)
 100 — D (data)
 101 — E (extra)
-110 — (reserved)
-111 — (reserved)
+110 — S (source)
+111 — T (target)
 ```
 
 ---
 
-## Opcode Field (bits 8-2)
+## Reference Field (bit 9)
+
+Encodes whether the operand is a memory reference or not.
+
+```
+0 - Is not memory reference
+1 - Is memory reference
+```
+
+---
+
+## Data Size (bits 8-7)
+
+For instructions that target memory, this the size of data to read/write
+```
+00 - 8 bits to read/write
+01 - 16 bits to read/write
+10 - 32 bits to read/write
+11 - 64 bits to read/write
+```
+
+---
+
+## Opcode Field (bits 6-0)
 
 7 bits = 128 possible opcodes.
 
