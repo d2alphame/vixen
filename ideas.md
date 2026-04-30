@@ -68,8 +68,8 @@ Attempting to add items to a full stack would lead to an overflow error, and att
 This is the stack that is used to make calls and it is different from the compute stack. Unlike the compute stack, this stack lives in main memory. It has only 32 slots in it and is only affected by the `call` and `ret` instructions.
 
 #### Instructions Affecting the Call Stack
-- **call:** Makes a call to another part of a running program
-- **ret:** Returns from a call
+1. **call:** Makes a call to another part of a running program
+2. **ret:** Returns from a call
 
 ### The Flags Register
 The flags register has the following flags available.

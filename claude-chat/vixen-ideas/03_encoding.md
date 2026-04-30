@@ -55,11 +55,12 @@ Encodes a register operand.
 
 ## Reference Field (bit 9)
 
-Encodes whether the operand is a memory reference or not.
+For intructions that read/write memory, how to treat the operand. It could be an
+offset (the base given in the B register), or absolute
 
 ```
-0 - Is not memory reference
-1 - Is memory reference
+0 - Offset
+1 - Absolute
 ```
 
 ---
