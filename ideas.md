@@ -142,18 +142,21 @@ While the `frozen` flag is set, any instruction that modifies the E register wil
 ### Memory Access
 Memory can be accessed by specifying an offset from the value in the base (or B) register. The offset value is a signed integer. For example:
 ```
-add @1234  ; This adds the value at (B + 1234) to the value in the accumulator
-mul @C     ; Multiply the accumulator by value at memory address B + C (the counter register)
+add %1234  ; This adds the value at (B + 1234) to the value in the accumulator
+mul %C     ; Multiply the accumulator by value at memory address B + C (the counter register)
 ```
 When accessing memory with the offset mode, the value in the base register is not affected.
 
 1.  **load:** Reads from memory address base + source (the B and the S registers) into operand. Auto increments S
-2.  **store:** Writes operand to memory address base + target (the B and the T registers). Auto decrements T
+2.  **store:** Writes operand to memory address base + target (the B and the T registers). Auto increments T
 
 To read from or write to an absolute address, specify 0 as the offset. This reads from the address in the B register as
 an absolute value.
 ```
-acc @0  ; Leads to reading from absolute memory address value in the B register.
+acc %0  ; Leads to reading from absolute memory address value in the B register.
+
+; To specify a specific absolute addres:
+add @5678
 ```
 It should be noted that in all these cases, the value in the B regitered is never affected. It is simply used as the
-base for memory address calculations. 
+base for memory address calculations.

@@ -39,5 +39,5 @@ For instructions targeting memory, bit 24 determines how to calculate the memory
 
 Bits 23-0 Is the actual encoding for the instructions. This gives room for over 16 million instructions. That's plenty.
 ```
-23-0 (25 bits) - The actual instruction
+23-0 (24 bits) - The actual instruction
 ```
