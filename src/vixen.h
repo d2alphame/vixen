@@ -14,7 +14,7 @@
 #define MASK_BYTE  0xFFULL
 #define MASK_WORD  0xFFFFULL
 #define MASK_DWORD 0xFFFFFFFFULL
-// #define MASK_QWORD 0xFFFFFFFFFFFFFFFFULL // Not needed since we're using uint64_t for the data bus, which is already 64 bits wide.
+#define MASK_QWORD 0xFFFFFFFFFFFFFFFFULL
 
 typedef enum {
     SIZE_BYTE,
@@ -40,8 +40,8 @@ typedef enum {
  * these pointers directly.
  */
 typedef struct {
-    uint64_t *addr_bus;      // Pointer to the address being targeted
-    uint64_t *data_bus;      // Pointer to the source/destination register
+    uint64_t *addr_bus;      // Pointer representing the address bus
+    uint64_t *data_bus;      // Pointer representing the data bus
     SizeType size_msk;       // Enum indicating the width of the data
     ControlSignal control;    // Read or Write signal
 } MemoryTransaction;
