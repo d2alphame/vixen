@@ -53,10 +53,10 @@ Encodes a register operand.
 
 ---
 
-## Reference Field (bit 9)
+## Address Field (bit 9)
 
 For intructions that read/write memory, how to treat the operand. It could be an
-offset (the base given in the B register), or absolute
+offset (with the base given in the B register), or absolute address
 
 ```
 0 - Offset
