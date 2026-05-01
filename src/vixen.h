@@ -28,7 +28,7 @@
  * Defines whether the transaction is moving data from the CPU to the 
  * Fabric (WRITE) or from the Fabric to the CPU (READ).
  */
-typedef enum {
+typedef enum : uint8_t {
     MEM_READ,
     MEM_WRITE
 } ControlSignal;
@@ -53,6 +53,7 @@ typedef struct {
     ControlSignal ctrl_sig;  // Indicates read or write operation
 } MemoryTransaction;
 
+
 /**
  * AddressTranslator (The Fabric Interface)
  * This is the contract for modularity. Any memory controller or system
@@ -66,10 +67,19 @@ typedef struct {
      */
     void (*execute)(MemoryTransaction *tx);
 
-    // Initialize the fabric with the ROM base address and size. We use a size
-    // mask
-    void (*init)(uint64_t rom_base_addr);
+    // Initialize the fabric with the ROM base address and size.
+    void (*init)(uint64_t rom_base_addr, uint64_t rom_size);
 } AddressTranslator;
+
+
+/**
+ * CPU (The main CPU interface)
+ *  
+ */
+typedef struct {
+    void(*init)(AddressTranslator *translator);
+    void(*power_on)(uint64_t reset_vector);
+} CPU;
 
 
 #endif // VIXEN_H
