@@ -1,5 +1,6 @@
 #pragma once
 
+
 // Enum defining the type of transaction.
 enum class TransactionType : bool {
     READ = false,
@@ -29,4 +30,11 @@ struct MemoryTransaction {
 namespace Fabric {
     void     init(uint64_t rom_base, uint64_t rom_size);
     uint64_t execute(MemoryTransaction transaction);
-}
+};
+
+
+// Cpu writers implement this namespace.
+namespace Cpu {
+    void init(uint64_t reset_vector);
+    void power_on();
+};
