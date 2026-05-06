@@ -8,6 +8,11 @@
 
 #define MAX_ROM_SIZE 0x200000 // 2 MB
 
+namespace {
+    
+}
+
+
 int main(int argc, char* argv[]) {
     
     enum Result : int {
@@ -16,33 +21,47 @@ int main(int argc, char* argv[]) {
         InvalidFilename          = 2,
         FileNotFoundOrNotRegular = 3,
         FileTooLarge             = 4,
+        ArgumentNotProvided      = 5
     };
     
+    int current_index = 0; // Start from the first argument after the program name
+    std::string subcommand;
+
+    if(current_index + 1 < argc) {
+        current_index += 1;
+        subcommand = argv[current_index];
+
+        std::filesystem::path rom_file;
+        if(subcommand == "load-rom" ) {
+            if(current_index + 1 < argc) {
+                current_index += 1;
+                rom_file = argv[current_index]; // This should be the ROM file name.
+            }
+            else {
+                std::cerr << "Error: Missing ROM file name after 'load-rom' subcommand. Enter a valid ROM file name." << std::endl;
+                return Result::ArgumentNotProvided;
+            }
+            // Check that the ROM file string is not empty
+           if(rom_file.empty()) {
+                std::cerr << "Error: ROM file name is empty. Enter a valid ROM file name." << std::endl;
+                return Result::InvalidFilename;
+            }
+            // Check if the file exists and is a regular file
+            if(!std::filesystem::exists(rom_file) || !std::filesystem::is_regular_file(rom_file)) {
+                std::cerr << "Error: ROM file does not exist or is not a regular file. Enter a valid ROM file name." << std::endl;
+                return Result::FileNotFoundOrNotRegular;
+            }
+            // Check if the file is too large
+            if(std::filesystem::file_size(rom_file) > MAX_ROM_SIZE) {
+                std::cerr << "Error: ROM file is too large. Maximum allowed size is " << MAX_ROM_SIZE << " bytes." << std::endl;
+                return Result::FileTooLarge;
+            }   
+        }
+    }
+
     // The user passes in the name of the binary file to use as a ROM when starting the emulator.
-    std::string subcommand = argv[1];
-
-    // If the subcommand is "load-rom", we expect the name of the ROM binary file to follow
-    if(subcommand == "load-rom") {
-        // std::string rom_file = argv[2];
-        std::filesystem::path rom_file = argv[2];
-
-        // Check that the ROM file string is not empty
-        if(rom_file.empty()) {
-            std::cerr << "Error: ROM file name is empty. Enter a valid ROM file name." << std::endl;
-            return Result::InvalidFilename;
-        }
-
-        // Check if the file exists and is a regular file
-        if(!std::filesystem::exists(rom_file) || !std::filesystem::is_regular_file(rom_file)) {
-            std::cerr << "Error: ROM file does not exist or is not a regular file. Enter a valid ROM file name." << std::endl;
-            return Result::FileNotFoundOrNotRegular;
-        }
-
-        // Check if the file is too large
-        if(std::filesystem::file_size(rom_file) > MAX_ROM_SIZE) { // 2 MB limit for ROM size
-            std::cerr << "Error: ROM file is too large. Maximum allowed size is " << MAX_ROM_SIZE << " bytes." << std::endl;
-            return Result::FileTooLarge;
-        }
+    if(current_index < argc) {
+        std::string subcommand = argv[current_index];
     }
 
     return Result::Success;
