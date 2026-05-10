@@ -163,4 +163,8 @@ add @5678
 It should be noted that in all these cases, the value in the B regitered is never affected. It is simply used as the
 base for memory address calculations.
 
-Reads and writes are 64 bits by default. 
+Reads and writes are 64 bits by default.
+
+### System Control
+The `halt` instruction puts the cpu in sleep (or low-power) mode.
+**halt:** Enter sleep or low-power mode.
