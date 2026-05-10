@@ -64,6 +64,9 @@ The stack is a special scratch space with 8 slots in it - kept so small intentio
 
 Attempting to add items to a full stack would lead to an overflow error, and attempting to remove from an empty stack would cause an underflow error. When any of these stack errors occur, the `Stack Error` flag is set.
 
+The `dump` instruction dumps the entire stack at the memory address specified in the B register. The memory address must be 128 bytes
+otherwise a `misalignment` error occurs.
+
 ### The Call Stack
 This is the stack that is used to make calls and it is different from the compute stack. Unlike the compute stack, this stack lives in main memory. It has only 32 slots in it and is only affected by the `call` and `ret` instructions.
 
@@ -167,4 +170,4 @@ Reads and writes are 64 bits by default.
 
 ### System Control
 The `halt` instruction puts the cpu in sleep (or low-power) mode.
-**halt:** Enter sleep or low-power mode.
+1. **halt:** Enter sleep or low-power mode.
