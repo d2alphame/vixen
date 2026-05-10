@@ -58,14 +58,13 @@ The stack is a special scratch space with 8 slots in it - kept so small intentio
 11. **dropy:** Removes and throws away the next-to-top item
 12. **cycle:** Cycles the top 3 items on the stack. The deepest item comes up to the top of the stack
 13. **clear:** Clears the stack
-14. **dump:** Dumps the entire stack into memory
+14. **dump:** Dumps the entire stack into memory and clears the stack
 15. **count:** Returns the number of item on stack
 16. **cap:** Return the total number of items that the stack can hold
 
 Attempting to add items to a full stack would lead to an overflow error, and attempting to remove from an empty stack would cause an underflow error. When any of these stack errors occur, the `Stack Error` flag is set.
 
-The `dump` instruction dumps the entire stack at the memory address specified in the B register. The memory address must be 128 bytes
-otherwise a `misalignment` error occurs.
+The `dump` instruction dumps the entire stack at the memory address specified in the B register and clears the stack. The memory address must be 128 bytes aligned otherwise a `misalignment` error occurs. 
 
 ### The Call Stack
 This is the stack that is used to make calls and it is different from the compute stack. Unlike the compute stack, this stack lives in main memory. It has only 32 slots in it and is only affected by the `call` and `ret` instructions.
