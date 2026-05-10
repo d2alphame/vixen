@@ -150,6 +150,8 @@ When accessing memory with the offset mode, the value in the base register is no
 1.  **load:** Reads from memory address base + source (the B and the S registers) into operand. Auto increments S
 2.  **store:** Writes operand to memory address base + target (the B and the T registers). Auto increments T
 
+S and T registers are automatically incremented/decremented by the size of the data read/written.
+
 To read from or write to an absolute address, specify 0 as the offset. This reads from the address in the B register as
 an absolute value.
 ```
@@ -160,3 +162,5 @@ add @5678
 ```
 It should be noted that in all these cases, the value in the B regitered is never affected. It is simply used as the
 base for memory address calculations.
+
+Reads and writes are 64 bits by default. 

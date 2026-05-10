@@ -8,10 +8,6 @@
 
 #define MAX_ROM_SIZE 0x200000 // 2 MB
 
-namespace {
-    
-}
-
 
 int main(int argc, char* argv[]) {
     
