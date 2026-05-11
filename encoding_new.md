@@ -11,7 +11,7 @@ instructions.
 011 - The C register (Counter)
 100 - The D register (Data)
 101 - The E register (Extra)
-110 - The S register (Source)
+110 - The S register (Source)  
 111 - The T register (Target)
 
 28-27 (2 bits) - Operand sizes
