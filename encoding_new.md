@@ -30,14 +30,22 @@ For instructions that read from and write to memory, the following bits (26-25) 
 11 - read/write a quad word (64 bits)
 ```
 
-For instructions targeting memory, bit 24 determines how to calculate the memory address
+Bit 24, tells whether the operand is a memory address reference or not. The referrence could be an immediate value or
+a value in a register.
 ```
-24 (1 bit) - Memory address calculation
+24 (1 bit) - Memory reference
+0 - Operand is not a memory reference
+1 - Operand is a memory reference
+```
+
+For instructions targeting memory, bit 23 determines how to calculate the memory address.
+```
+23 (1 bit) - Memory address calculation
 0 - Calculate offset (Base address in the B register)
 1 - Absolute
 ```
 
-Bits 23-0 Is the actual encoding for the instructions. This gives room for over 16 million instructions. That's plenty.
+Bits 22-0 Is the actual encoding for the instructions. This gives room for over 8 million instructions. That's plenty.
 ```
-23-0 (24 bits) - The actual instruction
+22-0 (23 bits) - The actual instruction
 ```
