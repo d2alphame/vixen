@@ -12,7 +12,7 @@ _C register:_ Counter
 _D register:_ Data  
 _E register:_ Extra  
 _F register:_ Flags  
-_S register:_ Source
+_S register:_ Source  
 _T register:_ Target  
 
 Note that I am considering using E as the 'error' register rather than the 'extra' register.  
