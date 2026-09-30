@@ -144,6 +144,24 @@ The all-ones value is used for halt:
 | 0x000017 | `load` | read memory into transfer target |
 | 0x000018 | `store` | write A to memory |
 
+### Addressing syntax
+
+Vixen distinguishes two memory-reference forms:
+
+- `@addr` = absolute memory address
+- `%addr` = offset relative to the value in `B`
+
+Examples:
+
+```asm
+load @0x1000
+load %32
+store @0x2000
+store %8
+```
+
+This is the intended distinction from the older design notes: `@` is absolute, `%` is base-relative.
+
 ### Arithmetic and logic
 
 | Opcode | Mnemonic | Meaning |
