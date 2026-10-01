@@ -50,7 +50,7 @@ Call stack overflow sets an error flag.
 | 4   | stack error | Set on stack overflow or underflow               |
 | 3   | x           | Programmer-controlled flag                       |
 | 2   | y           | Programmer-controlled flag                       |
-| 1   | (reserved)  |                                                  |
+| 1   | carry       | Set on arithmetic carry or borrow                |
 | 0   | zero        | Set when result of an operation is zero          |
 
 **Notes:**

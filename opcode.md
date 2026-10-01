@@ -18,6 +18,19 @@ Vixen is a 64-bit hybrid accumulator/stack virtual CPU.
 | T | Target | Target pointer for stream memory ops |
 | I | Instruction | Internal instruction register |
 
+### Flags register
+
+| Bit | Flag | Meaning |
+|---:|---|---|
+| 7 | sign | Most significant bit of the latest arithmetic/logic result |
+| 6 | frozen | `mark` is active and E is locked |
+| 5 | mark error | Nested `mark` or write to E while frozen |
+| 4 | stack error | Stack or call-stack overflow/underflow |
+| 3 | x | Programmer-controlled flag |
+| 2 | y | Programmer-controlled flag |
+| 1 | carry | Arithmetic carry or borrow; used by `jc` and `jnc` |
+| 0 | zero | Latest arithmetic/logic result is zero |
+
 ## 2. 32-bit instruction encoding
 
 The newer Vixen encoding uses 32-bit instruction words.
@@ -122,7 +135,7 @@ The all-ones value is used for halt:
 | 0x00000B | `dropy` | discard second |
 | 0x00000C | `cycle` | rotate top three |
 | 0x00000D | `clear` | clear stack |
-| 0x00000E | `dump` | copy stack to memory |
+| 0x00000E | `dump` | copy stack to memory without removing items |
 | 0x00000F | `count` | count stack items |
 | 0x000010 | `cap` | return stack capacity |
 

@@ -127,7 +127,7 @@ def parse_operand(token):
     if token.startswith("@"):
         inner = token[1:]
         addr_mode = 1  # absolute address
-        if inner.upper() in REGS:
+        if inner.lower() in REGS:
             return "reg", REGS[inner.lower()], 1, addr_mode
         try:
             value = int(inner, 0)
@@ -138,7 +138,7 @@ def parse_operand(token):
     if token.startswith("%"):
         inner = token[1:]
         addr_mode = 0  # base-relative offset
-        if inner.upper() in REGS:
+        if inner.lower() in REGS:
             return "reg", REGS[inner.lower()], 1, addr_mode
         try:
             value = int(inner, 0)
@@ -146,7 +146,7 @@ def parse_operand(token):
         except ValueError:
             raise ValueError(f"Unsupported relative memory operand: {token!r}")
 
-    if token.upper() in REGS:
+    if token.lower() in REGS:
         return "reg", REGS[token.lower()], 0, 0
 
     try:
@@ -241,7 +241,7 @@ def encode_instruction(text):
         addr_mode = 0
         operand = operand[1:]
 
-    if operand.upper() in REGS:
+    if operand.lower() in REGS:
         regsel = REGS[operand.lower()]
         word = (regsel << 29) | (SIZE_CODES[size_bits] << 27) | (0 << 25) | ((1 if memref else 0) << 24) | (addr_mode << 23) | OPCODES[op]
         return [word]
