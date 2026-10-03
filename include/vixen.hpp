@@ -1,7 +1,8 @@
 #pragma once
 
-constexpr VIXEN_VERSION      = "1.0";
-constexpr RESET_VECTOR       = 0xFFFFFFFFFFFF0000ULL;
+constexpr uint16_t VIXEN_MAJOR_VERSION = 1;
+constexpr uint16_t VIXEN_MINOR_VERSION = 0;
+constexpr uint64_t VIXEN_RESET_VECTOR  = 0xFFFFFFFFFFFF0000ULL;
 
 // Enum defining the type of transaction.
 enum class TransactionType : bool {
